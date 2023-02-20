@@ -16,5 +16,7 @@ public class TreeTest {
         tree.postOrder(tree.root);
         System.out.println();
         tree.preOrder(tree.root);
+        System.out.println();
+        tree.levelOrder(tree.root);
     }
 }

@@ -1,5 +1,6 @@
 package Traversal;
 
+import java.security.PublicKey;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;
@@ -58,41 +59,38 @@ public class BinaryTree {
     // 非递归遍历二叉树
 
     // 前序遍历
-
-    public void noRecursionPreOrder(TreeNode node) {
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        if (node != null) {
+    public void noRecursionPreOrder(TreeNode node){
+        Deque<TreeNode> stack=new ArrayDeque<>();
+        if(node != null){
             stack.push(node);
-            while (!stack.isEmpty()) {
-                node = stack.pop();
+            while(!stack.isEmpty()){
+                node=stack.pop();
                 showData(node);
-                if (node.right != null) {
+                if(node.right != null)
                     stack.push(node.right);
-                }
-                if (node.left != null) {
+                if(node.left != null)
                     stack.push(node.left);
-                }
-
             }
         }
     }
-
-    // 中序遍历
-    public void noRecursionInOrder(TreeNode node) {
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode p = node;
-        while (p != null || stack.size() > 0) {
-            while (p != null) {
+    //中序遍历
+    public void noRecursionInOrder(TreeNode node){
+        Deque<TreeNode> stack=new ArrayDeque<>();
+        TreeNode p=node;
+        while(p != null || !stack.isEmpty()){
+            while(p !=null){
                 stack.push(p);
-                p = p.left;
+                p=p.left;
             }
-            if (stack.size() > 0) {
-                p = stack.pop();
+            if (stack.size()>0){
+                p=stack.pop();
                 showData(p);
-                p = p.right;
+                p=p.right;
             }
         }
+
     }
+
 
     //后序遍历 ,需要记录遍历过的节点
     public void noRecursionPostOrder(TreeNode node)
@@ -116,5 +114,21 @@ public class BinaryTree {
             node=node.right;
         }
     }
+
+
+    //层次遍历
+    public void levelOrder(TreeNode node){
+        Deque<TreeNode> queue =new ArrayDeque<>();
+        queue.offer(node);
+        while(!queue.isEmpty()){
+            node=queue.poll();
+            showData(node);
+            if (node.left!=null)
+                queue.offer(node.left);
+            if(node.right!=null)
+                queue.offer(node.right);
+        }
+    }
+
 
 }
